@@ -1,0 +1,2 @@
+intentional_mean,intentional_sd,intentional_n,unintentional_mean,unintentional_sd,unintentional_n,t_value,p_value,cohens_d,replication_success
+7.0,0.0,50,3.22,0.418,50,63.875,0.0,12.775,Yes

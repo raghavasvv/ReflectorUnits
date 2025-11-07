@@ -1,0 +1,17 @@
+{
+  "checkpoint_agents": 100,
+  "total_agents": 1000,
+  "elapsed_seconds": 3545.4,
+  "avg_time_per_agent_sec": 35.45,
+  "total_responses": 5000,
+  "throughput_resp_per_sec": 1.41,
+  "avg_latency_sec": 0.704,
+  "median_latency_sec": 0.5885,
+  "p95_latency_sec": 1.3092,
+  "tokens": {
+    "prompt": 5489800,
+    "completion": 16493,
+    "total": 5506293,
+    "per_agent": 55062.93
+  }
+}
