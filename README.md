@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🪜 **Breaking the Project into Smaller Parts (Short & Clear)**
 
 ### **Phase 1: OCEAN Personality Simulation**
@@ -181,3 +182,7 @@ Metric	Ideal Range	Interpretation
 KL < 0.05	Minimal information loss	
 JS < 0.02	>98% behavioral similarity	
 
+=======
+# ReflectorUnits
+UHCL Capstone Project
+>>>>>>> 1ebfaed4618da6f8c20f7365133cbd2cb8d0a7a3
