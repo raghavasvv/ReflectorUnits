@@ -1,183 +1,377 @@
-# 🪜 **Breaking the Project into Smaller Parts (Short & Clear)**
-
-### **Phase 1: OCEAN Personality Simulation**
-
-1. **Build Synthetic Agents** → Create 1,000 AI agents (`synthetic_agents.json`) with demographic and personality traits.  
-2. **Collect Human Responses** → Two real human datasets (`phase1`, `phase2`) used for validation.  
-3. **Run OCEAN Questions** → Agents answer Big Five (OCEAN) personality questions using:
-   - **Cloud-based LLMs** via OpenAI API.
-   - **Local LLM** (e.g., Ollama / Llama-3).  
-4. **Compute Metrics** → Compare Human vs Agent responses using:
-   - **Correlation**
-   - **KL Divergence**
-   - **JS Divergence**
-   - **Normalized Accuracy**
-5. **Generate Visualizations** → Produce metrics and comparison charts under `results/ocean_results/`.
+# 🧠 Generative Reflector Units (RUs)  
+### *Simulating 1,000 Human-like Respondents through Local and Cloud LLM Execution*
 
 ---
 
-### **Phase 2: Media Survey Simulation**
+## ⚙️ Part 1 – Project Setup
 
-6. **Collect Media Poll Data** → Real-world public poll questions (2020–2025).  
-7. **Run Agent Responses** → Agents answer identical media poll questions using both cloud and local models.  
-8. **Compare with Humans** → Evaluate trends and response alignment.  
-9. **Visualize Media Results** → Generate comparative charts for percentage distributions and time trends.
-
----
-
-### **Phase 3: Deliverables**
-
-10. **Datasets** → Synthetic agent responses + Human datasets (`phase1`, `phase2`).  
-11. **Analysis Outputs** → Charts for correlation, KL/JS divergence, and normalized accuracy.  
-12. **Final Report** → Methodology, results, and summary of human-agent alignment.  
-13. **Presentation** → Slide deck summarizing pipeline, results, and charts.
+### 🧩 1. System Requirements
+| Tool | Purpose |
+|------|----------|
+| **Python 3.10 or later** | Runs all RU scripts |
+| **Anaconda / Miniconda (or venv)** | Creates a clean virtual environment |
+| **Git** | Clone this repository |
+| **OpenAI API Key (Cloud mode)** | Get from https://platform.openai.com |
+| **Ollama (optional)** | Needed only for Local LLM mode (e.g., Llama 3) |
 
 ---
 
-## 🧩 **Key Aspects**
-
-**Agent Design**  
-- 1,000 OCEAN-based synthetic agents.  
-- Each agent answers using either Cloud API or Local LLM pipeline.  
-
-**Datasets**
-- `OCEAN Dataset` → Big Five Personality Questions  
-- `Media Dataset` → Public opinion poll questions (2020 vs 2025)
-
-**Pipeline**
-1. Load Agents + Questions.  
-2. Build prompts (Cloud or Local).  
-3. Execute simulations.  
-4. Store all responses in CSV/JSON under `results/`.  
-5. Compute metrics & plot graphs.
-
-**Analysis**
-- Compare Human vs Agent distributions.
-- Compute accuracy, divergence, and consistency scores.
-- Visualize metrics across runs.
+### 🧱 2. Clone the Repository
+```bash
+git clone https://github.com/<yourusername>/capstone3.git
+cd capstone3
+```
 
 ---
 
-## 📂 **Project Structure**
+### 🧮 3. Create and Activate a Virtual Environment
+**Conda (recommended):**
+```bash
+conda create -n capstone3 python=3.12 -y
+conda activate capstone3
+```
+**or venv:**
+```bash
+python -m venv venv
+source venv/bin/activate        # macOS / Linux
+venv\Scripts\activate           # Windows
+```
 
-TEAMROSS/capstone3/
-├── agents/
-│ └── synthetic_agents.json
-│
-├── human/
-│ ├── human_responses_phase1.csv
-│ ├── human_responses_phase2.csv
-│ ├── human_vs_human_metrics_250.csv / .png
-│ ├── human_vs_human_metrics_1000.csv / .png
+---
+
+### 📦 4. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+If missing, create:
+```bash
+# requirements.txt
+openai
+python-dotenv
+pandas
+numpy
+matplotlib
+scipy
+tqdm
+```
+
+---
+
+### 🔑 5. Add OpenAI API Key (for Cloud Mode)
+Create `.env` in project root:
+```
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+---
+
+### 🧠 6. Install Ollama (for Local Mode)
+```bash
+# macOS
+brew install ollama
+# Windows
+winget install Ollama.Ollama
+```
+Then download the model:
+```bash
+ollama pull llama3
+```
+
+> Ollama runs system-wide; the Python environment simply connects to it.
+
+---
+
+### 🧾 7. Verify Setup
+```bash
+python -c "import openai, pandas, numpy, matplotlib, scipy; print('✅ All dependencies installed successfully!')"
+```
+
+---
+
+## 🚀 Part 2A – Running Reflector Units in Local Mode (Ollama + Llama 3)
+
+### 🧩 1. Start Ollama Service
+```bash
+ollama serve
+```
+Keep this terminal open while running RUs.
+
+---
+
+### 🧰 2. Check Model
+```bash
+ollama list
+# If missing:
+ollama pull llama3
+```
+
+---
+
+### 🧮 3. Activate Environment
+```bash
+conda activate capstone3
+# or
+source venv/bin/activate
+```
+
+---
+
+### 🧾 4. Run Reflector Units
+```bash
+python RUS/run_RUS_LLM.py
+```
+
+The script will load RU profiles (`RUS/synthetic_RUs.json`), read questions from `questions/`, send prompts to Llama 3 through Ollama, and save results to `results/`.
+
+---
+
+### 📁 5. Outputs
+```
+results/
+ └── media/
+      ├── media_RUs.csv
+      ├── media_log.json
+      ├── response_snapshots/
+      └── batch_metrics.csv
+```
+
+---
+
+### ⚠️ 6. Troubleshooting
+| Issue | Cause | Fix |
+|-------|--------|-----|
+| `ConnectionRefusedError` | Ollama not running | `ollama serve` |
+| `Model llama3 not found` | Model not downloaded | `ollama pull llama3` |
+| `ModuleNotFoundError` | Missing packages | `pip install -r requirements.txt` |
+| Slow responses | Heavy CPU/RAM load | Reduce batch size in script |
+
+---
+
+### 🧩 7. Notes
+- Works completely offline once Llama 3 is downloaded.  
+- Adjust batch size or temperature inside `run_RUS_LLM.py`.  
+- Logs stored in `results/local_logs/`.
+
+---
+
+## ☁️ Part 2B – Running Reflector Units in Cloud Mode (OpenAI API)
+
+### 🔑 1. Confirm API Key
+`.env` must contain:
+```
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+---
+
+### 🧩 2. Activate Environment
+```bash
+conda activate capstone3
+# or
+source venv/bin/activate
+```
+
+---
+
+### 🚀 3. Run Cloud Mode
+```bash
+python RUS/run_RUS_cloud.py
+```
+
+The script loads Reflector Unit profiles and questions, calls **GPT-4o-mini**, and stores responses and metrics under `results/`.
+
+---
+
+### 📁 4. Outputs
+```
+results/
+ └── media/
+      ├── media_RUs_cloud.csv
+      ├── cloud_run_log.json
+      ├── batch_metrics_cloud.csv
+      └── comparison_graphs/
+```
+
+---
+
+### ⚠️ 5. Common Errors
+| Issue | Cause | Fix |
+|-------|--------|-----|
+| `AuthenticationError` | Invalid API key | Re-check `.env` |
+| `RateLimitError` | Too many requests | Lower batch size / add delays |
+| `FileNotFoundError` | Wrong path | Verify file paths |
+| `Timeout` | Slow internet / large batch | Re-run smaller batches |
+
+---
+
+### 📊 6. Usage Tips
+- Monitor token usage on OpenAI dashboard.  
+- Adjust `temperature`, `max_tokens`, `batch_size` inside `run_RUS_cloud.py`.  
+- Results auto-timestamp in `results/`.
+
+---
+
+## 📊 Part 3 – Comparing Human vs Reflector Unit Results
+
+### 🧩 1. Required Files
+| File | Description |
+|------|--------------|
+| `results/media/media_RUs.csv` or `media_RUs_cloud.csv` | RU responses |
+| `results/media/media_human_resp.json` | Human survey data |
+
+---
+
+### 🚀 2. Run Comparison
+```bash
+python pipeline/compare_human_vs_RU.py
+```
+
+Computes KL-Divergence, JS-Divergence, and t-tests, then plots graphs.
+
+---
+
+### 📁 3. Outputs
+```
+results/media/
+ ├── KL_JS_metrics.csv
+ ├── human_vs_RU_summary.csv
+ └── comparison_graphs/
+      ├── kl_divergence.png
+      ├── js_divergence.png
+      └── distribution_overlap.png
+```
+
+---
+
+### 📈 4. Metric Interpretation
+| Metric | Meaning |
+|---------|----------|
+| **KL ↓** | Smaller = closer to human |
+| **JS ↓** | Symmetric distance (0 ≈ perfect) |
+| **t-Test p ↑** | > 0.05 → no significant difference |
+| **Consistency α ↑** | Higher = more stable RUs |
+
+Example: `KL 0.028  JS 0.014  α 0.91`
+
+---
+
+## 🧩 Part 4 – Visualization and Result Interpretation
+
+### 🖼️ 1. Graph Location
+```
+results/media/comparison_graphs/
+```
+
+Files: `kl_divergence.png`, `js_divergence.png`, `distribution_overlap.png`, `batch_consistency.png`
+
+---
+
+### 🧮 2. Regenerate Plots
+```bash
+python pipeline/metrics_visualizer.py
+```
+
+---
+
+### 📊 3. How to Read Charts
+| Plot | Shows | Read As |
+|------|--------|---------|
+| KL Bar Chart | Info loss RU→Human | Lower = better |
+| JS Heatmap | Similarity across topics | Cooler colors = closer |
+| Distribution Overlap | Probabilities per question | More overlap = similar |
+| Consistency Histogram | Stability per batch | Peaks near 1.0 = good |
+
+---
+
+### 🧠 4. Alignment Quality
+| Range | Quality | Meaning |
+|--------|----------|----------|
+| 0–0.02 | Excellent | Almost human-like |
+| 0.02–0.05 | Good | Minor variation |
+| 0.05–0.10 | Moderate | Some topic shift |
+| > 0.10 | Low | Needs tuning |
+
+---
+
+### 🧩 5. Tips for Reports
+- Include Local vs Cloud comparisons.  
+- Mention internal consistency α values.  
+- Label plots clearly as “RUs vs Humans”.
+
+---
+
+## 🗂️ Part 5 – Project Folder Structure and Execution Flow
+
+### 📁 1. Folder Layout
+```
+capstone3/
+├── RUS/
+│   ├── run_RUS_LLM.py
+│   ├── run_RUS_cloud.py
+│   └── synthetic_RUs.json
 │
 ├── pipeline/
-│ ├── CLOUD_API/
-│ │ ├── Runagent_cloud.py
-│ │ ├── compare_HVA_1000.py
-│ │ ├── compare_ocean_HVA500.py
-│ │ ├── normalize_acc_1000.py
-│ │ └── cloud_vs_cloud250.py
-│ ├── LOCAL_LLM/
-│ │ ├── compare_localvshuman.py
-│ │ └── run_agents.py
-│ ├── HUMAN_VS_HUMAN/
-│ │ ├── compare_HVH_250.py
-│ │ └── compre_ocean_HVH_1000.py
-│ ├── 5_STUDIES/ # Future Extension
-│ │ ├── ames_and_frisky.py
-│ │ ├── cooney_et_al.py
-│ │ ├── halevy_halali.py
-│ │ ├── rai_et_al_final.py
-│ │ └── schilke_reimann_cook.py
+│   ├── memory_manager.py
+│   ├── reflection_manager.py
+│   ├── plan_manager.py
+│   ├── compare_human_vs_RU.py
+│   ├── internal_consistency.py
+│   └── metrics_visualizer.py
 │
 ├── questions/
-│ ├── OCEAN.json
-│ └── media.json
+│   ├── media_questions.json
+│   ├── psychometrics.json
+│   ├── classic_studies.json
+│   └── uhcl_survey.json
 │
 ├── results/
-│ ├── ocean_results/ # OCEAN metrics
-│ ├── media/ # Media metrics
-│ └── study_results/ # (future studies)
+│   ├── media/
+│   └── local_logs/
 │
+├── .env
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
-## ⚙️ **Setup Instructions**
+### 🔄 2. Execution Flow
+```
+Reflector Units (RUs)
+     │
+     ▼
+MemoryManager → ReflectionManager → PlanManager
+     │
+     ▼
+Response Generation (Llama 3 or GPT-4o-mini)
+     │
+     ▼
+Results Storage (CSV/JSON)
+     │
+     ▼
+Human vs RU Comparison (KL, JS)
+     │
+     ▼
+Visualization & Metrics Plots
+```
 
-1. **Clone this repo** (or copy project folder).  
-2. **Create a virtual environment**:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate       # macOS/Linux
-   venv\Scripts\activate          # Windows
+---
 
+### 🧠 3. Step Summary
+| Step | Module | Input | Output |
+|------|---------|--------|---------|
+| 1 | `run_RUS_LLM.py` / `run_RUS_cloud.py` | RU profiles + questions | RU responses (CSV/JSON) |
+| 2 | `compare_human_vs_RU.py` | Human + RU data | KL/JS metrics |
+| 3 | `internal_consistency.py` | RU responses | α (reliability) |
+| 4 | `metrics_visualizer.py` | Metric CSVs | PNG graphs |
 
-## Install dependencies:
+---
 
-bash
-Copy code
-pip install -r requirements.txt
-Add API Key for cloud runs:
-Create a .env file in the project root and add:
-
-ini
-Copy code
-OPENAI_API_KEY=your_openai_api_key_here
-
-## Running the Pipeline
-
-1️⃣ Generate Agent Responses (Cloud)
-python pipeline/CLOUD_API/Runagent_cloud.py
-
-2️⃣ Generate Agent Responses (Local LLM)
-python pipeline/LOCAL_LLM/run_agents.py
-
-3️⃣ Compare Human vs Agent (Cloud)
-python pipeline/CLOUD_API/compare_HVA_1000.py
-
-4️⃣ Compare Human vs Agent (Local)
-python pipeline/LOCAL_LLM/compare_localvshuman.py
-
-5️⃣ Validate Human Internal Consistency
-python pipeline/HUMAN_VS_HUMAN/compare_HVH_250.py
+✅ **Setup complete and ready for execution.**  
+Run either Local or Cloud mode, compare results, and review the plots in `results/media/comparison_graphs/`.
 
 
-
-# Example Outputs
-## OCEAN Results (Human vs Agent)
-File	Description
-normalized_accuracy_cloud1000.png	Normalized accuracy of agent–human responses
-Correlation_UHCL_Hawks_Final.png	Correlation plot for OCEAN metrics
-KL_Divergence_UHCL_Hawks_Final.png	KL Divergence (Human vs Agent distributions)
-JS_Divergence_UHCL_Hawks_Final.png	JS Divergence indicating behavioral overlap
-
-# Example Charts
-
-
-Figure 1 – Normalized accuracy (Human vs Agent).
-
-
-Figure 2 – JS divergence showing distribution similarity.
-
-Media Results (Poll Comparisons)
-File	Description
-media_metrics_bar.png	Overall media poll results (agents vs humans)
-media_metrics_average.png	Average comparison for multiple questions
-media_q1_trend_chart.png	2020 vs 2025 agent response trends for question 1
-
-# Example Charts
-
-
-Figure 3 – Human vs Agent response percentages.
-
-
-Figure 4 – Temporal agent response trends.
-
-# Metric Interpretation
-Metric	Ideal Range	Interpretation
-	
-KL < 0.05	Minimal information loss	
-JS < 0.02	>98% behavioral similarity	
+### 🧾 License
+MIT License – Free to use and modify with attribution.
 
