@@ -1,0 +1,8 @@
+timestamp,RU_id,question_id,question,response,response_num
+2025-11-11T19:00:09.325208+00:00,RU_414,A1,Feel little concern for others.,Very Inaccurate,1
+2025-11-11T19:00:10.059432+00:00,RU_414,A2,Am interested in people.,Very Inaccurate,1
+2025-11-11T19:00:10.979451+00:00,RU_414,A3,Insult people.,Very Inaccurate,1
+2025-11-11T19:00:11.472164+00:00,RU_414,A4,Sympathize with others' feelings.,Moderately Accurate,4
+2025-11-11T19:00:12.000693+00:00,RU_414,A5,Am not interested in other people's problems.,Very Inaccurate,1
+2025-11-11T19:00:12.821962+00:00,RU_414,A6,Have a soft heart.,Moderately Accurate,4
+2025-11-11T19:00:13.533800+00:00,RU_414,A7,Am not really interested in others.,Very Inaccurate,1

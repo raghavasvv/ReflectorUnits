@@ -1,0 +1,2 @@
+total_RUs,total_questions,total_responses,total_seconds,avg_latency_sec,median_latency_sec,p95_latency_sec,responses_per_second,avg_time_per_RU_sec,total_prompt_tokens,total_completion_tokens,total_tokens,tokens_per_RU,timestamp
+5,50,250,193.44,0.7718,0.6172,1.238,1.292,38.69,276133,838,276971,55394.2,2025-11-08T03:18:36.478626+00:00

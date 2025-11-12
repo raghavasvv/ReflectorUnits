@@ -1,0 +1,21 @@
+{
+    "pearson_correlation": -0.34409,
+    "KL_divergence": Infinity,
+    "JS_divergence": 0.69315,
+    "total_responses_media": 500,
+    "total_responses_cloud": 5000,
+    "unique_options": [
+        "Excellent/Very good",
+        "Fair/Poor",
+        "Good",
+        "Moderately Accurate",
+        "Moderately Inaccurate",
+        "Neither Accurate Nor Inaccurate",
+        "No opinion",
+        "Not sure",
+        "Right direction",
+        "Very Accurate",
+        "Very Inaccurate",
+        "Wrong direction"
+    ]
+}

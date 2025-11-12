@@ -1,0 +1,12 @@
+{
+    "files_compared": {
+        "human_file": "/Users/raghavasvv/Downloads/Capstone2/teamross/capstone3/human/human_responses_phase1.csv",
+        "nomodule_file": "/Users/raghavasvv/Downloads/Capstone2/teamross/capstone3/results/ocean_results/cloudresponses_nomodule_100.csv"
+    },
+    "common_questions": 50,
+    "average_metrics": {
+        "correlation": 0.425723,
+        "KL_divergence": 0.75168,
+        "JS_divergence": 0.186345
+    }
+}

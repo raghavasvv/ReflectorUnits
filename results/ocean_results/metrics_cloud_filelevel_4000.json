@@ -1,0 +1,9 @@
+{
+    "rows_compared": 4000,
+    "average": {
+        "correlation": 0.651052,
+        "KL_divergence": 0.181482,
+        "JS_divergence": 0.040946
+    },
+    "num_questions": 50
+}

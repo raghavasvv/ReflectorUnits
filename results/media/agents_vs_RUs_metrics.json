@@ -1,0 +1,16 @@
+{
+    "Pearson_Correlation": 0.99423,
+    "KL_Divergence": 0.06461,
+    "JS_Divergence": 0.01002,
+    "Total_Agent_Responses": 500,
+    "Total_RU_Responses": 500,
+    "Unique_Options": [
+        "Excellent/Very good",
+        "Fair/Poor",
+        "Good",
+        "No opinion",
+        "Not sure",
+        "Right direction",
+        "Wrong direction"
+    ]
+}

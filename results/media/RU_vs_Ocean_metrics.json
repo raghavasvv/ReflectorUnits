@@ -1,0 +1,32 @@
+[
+  {
+    "question_id": "A1",
+    "correlation": -0.3727401247819044,
+    "kl_divergence": Infinity,
+    "js_divergence": 0.8325546111576978
+  },
+  {
+    "question_id": "A2",
+    "correlation": -0.31415041474690325,
+    "kl_divergence": Infinity,
+    "js_divergence": 0.8325546111576977
+  },
+  {
+    "question_id": "A3",
+    "correlation": -0.6933752452815364,
+    "kl_divergence": Infinity,
+    "js_divergence": 0.8325546111576977
+  },
+  {
+    "question_id": "A4",
+    "correlation": -0.658067935406865,
+    "kl_divergence": Infinity,
+    "js_divergence": 0.8325546111576978
+  },
+  {
+    "question_id": "A5",
+    "correlation": -0.23855152751544004,
+    "kl_divergence": Infinity,
+    "js_divergence": 0.8325546111576978
+  }
+]
